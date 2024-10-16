@@ -1,20 +1,19 @@
-# Code Review and Refactoring Task
+# Refactor Task
 
-## BookingController.php
+## Thoughts on the Original Code
+The original code was functional but had several areas where the separation of concerns was not clearly maintained. Business logic was mixed with the controller logic, making the code harder to maintain and test.
 
-### What is good:
-- The logic is functional and follows Laravel’s MVC structure.
-- It uses repositories to separate concerns, which is a good practice.
+### Issues:
+- Business logic cluttered the controller.
+- Methods were too large and complex.
+- Lack of adherence to SOLID principles.
 
-### What needs improvement:
-- The controller is handling too much business logic. It would be better to delegate more logic to repositories or services.
-- The methods are somewhat large and could be split for better readability and maintainability.
+## Refactoring Changes
+I refactored the code by:
+1. Moving all business logic to the `BookingRepository`.
+2. Ensuring that the `BookingController` was more lightweight and only handled routing and request data.
+3. Breaking down large methods into smaller, reusable functions.
+4. Improved code readability and structure for future maintainability.
 
-## BookingRepository.php
-
-### What is good:
-- The repository pattern is being used, which helps keep database queries separate from the controller.
-  
-### What needs improvement:
-- The code can be refactored to reduce duplication and improve efficiency.
-- Complex queries or logic inside methods should be broken down into smaller pieces.
+## How I would do it differently (optional)
+Given more time, I would have added more unit tests and implemented dependency injection more thoroughly.
